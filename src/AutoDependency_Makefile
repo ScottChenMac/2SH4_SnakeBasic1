@@ -1,0 +1,13 @@
+CXX = gcc
+CXXFLAGS = -g -Wall -MMD
+OBJECTS = SnakeGame.o MacUILib.o GameObjects.o
+DEPENDS = ${OBJECTS:.o=.d}
+EXEC = DecomProg
+
+${EXEC} : ${OBJECTS}
+	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC} 
+
+clean :
+	rm -rf ${DEPENDS} ${OBJECTS} ${EXEC}
+
+-include ${DEPENDS}
