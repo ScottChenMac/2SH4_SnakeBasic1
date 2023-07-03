@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-I.
 OBJ = MacUILib.o GameObjects.o Snake.o SnakeGame.o 
-DEPENDS = ${OBJ:.o=.d}
+DEPS = *.h
 #POSTLINKER = -lncurses   ## uncomment this if on Linux
 EXEC = ../build/DecomProg
 
@@ -11,8 +11,6 @@ EXEC = ../build/DecomProg
 ${EXEC} : $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) ${POSTLINKER}
 
--include ${DEPENDS}
-
 clean :
-	rm -rf ${DEPENDS} ${OBJ} ${EXEC}
+	rm -rf ${OBJ} ${EXEC}
 
