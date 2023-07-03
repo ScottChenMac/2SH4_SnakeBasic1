@@ -1,14 +1,18 @@
-CXX = gcc
-CXXFLAGS = -g -Wall -MMD
-OBJECTS = MacUILib.o GameObjects.o Snake.o SnakeGame.o 
+CC=gcc
+CFLAGS=-I.
+OBJ = MacUILib.o GameObjects.o Snake.o SnakeGame.o 
 DEPENDS = ${OBJECTS:.o=.d}
 EXEC = ../build/DecomProg
-POSTLINKER = -lncurses
 
-${EXEC} : ${OBJECTS}
-	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC} ${POSTLINKER}
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+${EXEC} : $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS) ${POSTLINKER}
+
+-include ${DEPENDS}
 
 clean :
 	rm -rf ${DEPENDS} ${OBJECTS} ${EXEC}
 
--include ${DEPENDS}
+
