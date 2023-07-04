@@ -33,6 +33,8 @@
 	void MacUILib_uninit(void)
 	{
 		// No implementation required
+		MacUILib_printf("\nPress Any Key to Shut Down\n");
+		getchar();
 	}
 	
 #endif
@@ -84,7 +86,9 @@
 
 	void MacUILib_uninit(void)
 	{
+		MacUILib_printf("\nPress Any Key to Shut Down\n");
 		refresh();
+		getchar();
 		endwin();
 	}
 

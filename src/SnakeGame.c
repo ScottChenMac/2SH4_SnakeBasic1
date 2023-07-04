@@ -215,7 +215,6 @@ void CleanUp(void)
 	MacUILib_clearScreen();
 
 	MacUILib_printf("\n\n       Game Over");
-	MacUILib_printf("\n\nPress ENTER to Shut Down");
 
-	getchar();
+	MacUILib_uninit();
 }
