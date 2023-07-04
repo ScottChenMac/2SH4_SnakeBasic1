@@ -7,6 +7,7 @@
 	void MacUILib_init(void)
 	{
 		// No implementation required
+		MacUILib_printf = &printf;
 	}
 
 	void MacUILib_Delay(int usec)
@@ -56,6 +57,8 @@
 
 	void MacUILib_init(void)
 	{
+		MacUILib_printf = &printw;
+		
 		initscr();
 		noecho();
 		cbreak();
@@ -81,6 +84,7 @@
 
 	void MacUILib_uninit(void)
 	{
+		refresh();
 		endwin();
 	}
 

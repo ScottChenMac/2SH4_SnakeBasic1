@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ncurses.h>	  // MacOS only
 
 #include "../include/MacUILib.h"
 #include "../include/BasicGameObjects.h"
@@ -168,13 +167,13 @@ void DrawScreen(void)
 	{
 		for(j = 0; j < myGB.BoardSizeX; j++)
 	 	{
-	 		printw("%c", myGB.GameBoardArray[i][j]);
+	 		MacUILib_printf("%c", myGB.GameBoardArray[i][j]);
 	 	}
-	 	printw("%c", '\n');
+	 	MacUILib_printf("%c", '\n');
 	}	
 	
 	// Debug Use
-	printw("Food Eaten: %s\n", mySnake.eatenChars);
+	MacUILib_printf("Food Eaten: %s\n", mySnake.eatenChars);
 
 	// Windows Version - use printf
 	/* // Draw Contents Array on Screen
@@ -215,11 +214,8 @@ void CleanUp(void)
 	
 	MacUILib_clearScreen();
 
-	MacUILib_uninit();
-
-	printf("\r\n\r\n       Game Over");
-	printf("\r\n\r\nPress ENTER to Shut Down");
+	MacUILib_printf("\n\n       Game Over");
+	MacUILib_printf("\n\nPress ENTER to Shut Down");
 
 	getchar();
 }
-
