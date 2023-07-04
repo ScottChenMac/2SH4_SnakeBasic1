@@ -1,8 +1,8 @@
 #ifndef MAC_UI_LIB
 #define MAC_UI_LIB
 
-	#define WINDOWS
-	//#define POSIX
+	//#define WINDOWS
+	#define POSIX
 
 	#include <stdio.h>
 	#include <stdlib.h>	
@@ -15,4 +15,7 @@
 	void MacUILib_clearScreen(void);
 	void MacUILib_uninit(void);
 
+	typedef int (*print_ptr)(const char*, ...);  // function pointer
+	print_ptr MacUILib_printf;
+	
 #endif
