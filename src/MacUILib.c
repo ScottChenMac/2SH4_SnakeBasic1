@@ -42,26 +42,7 @@
 	#include <ncurses.h>
 	#include <unistd.h>
 	
-	WINDOW *win;
-	
-	void MacUILib_init(void)
-	{
-		win = initscr();
-		nodelay(win, TRUE);
-		noecho();
-	}
-
-	void MacUILib_Delay(int usec)
-	{
-		usleep(usec);
-	}
-	
-	void MacUILib_uninit(void)
-	{
-		endwin();
-	}
-	
-	int MacUILib_hasChar(void)
+	int MacUILib_hasChar()
 	{
 		char ch = getch();
 		if(ch == ERR)
@@ -72,15 +53,35 @@
 			return 1;
 		}		
 	}
-	
+
+	void MacUILib_init(void)
+	{
+		initscr();
+		noecho();
+		cbreak();
+		nodelay(stdscr, TRUE);
+		curs_set(0);
+	}
+
+	void MacUILib_Delay(int usec)
+	{
+		refresh();
+		usleep(usec);
+	}
+
 	char MacUILib_getChar(void)
 	{
 		return getch();
 	}
-	
+
 	void MacUILib_clearScreen(void)
 	{
 		clear();
+	}
+
+	void MacUILib_uninit(void)
+	{
+		endwin();
 	}
 
 #endif

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ncurses.h>	  // MacOS only
 
 #include "../include/MacUILib.h"
 #include "../include/BasicGameObjects.h"
@@ -158,20 +159,36 @@ void DrawScreen(void)
 		
 	// Clear the Screen
 	MacUILib_clearScreen();
+
+	//printw("This is a test!\n");
 	
+	// Unix Version - Use printw
 	// Draw Contents Array on Screen
 	for(i = 0; i < myGB.BoardSizeY; i++)
 	{
 		for(j = 0; j < myGB.BoardSizeX; j++)
-		{
-			putchar(myGB.GameBoardArray[i][j]);
-		}
-		putchar('\r');
-		putchar('\n');
+	 	{
+	 		printw("%c", myGB.GameBoardArray[i][j]);
+	 	}
+	 	printw("%c", '\n');
 	}	
 	
 	// Debug Use
-	printf("Food Eaten: %s\r\n", mySnake.eatenChars);
+	printw("Food Eaten: %s\n", mySnake.eatenChars);
+
+	// Windows Version - use printf
+	/* // Draw Contents Array on Screen
+	for(i = 0; i < myGB.BoardSizeY; i++)
+	{
+		for(j = 0; j < myGB.BoardSizeX; j++)
+	 	{
+	 		printw("%c", myGB.GameBoardArray[i][j]);
+	 	}
+	 	printw("%c", '\n');
+	}	
+	
+	// Debug Use
+	printw("Food Eaten: %s\n", mySnake.eatenChars); */
 }
 
 // Arbitrary Delay
