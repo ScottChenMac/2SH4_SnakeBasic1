@@ -1,5 +1,7 @@
 #include "../include/MacUILib.h"
 
+print_ptr MacUILib_printf;
+
 #ifdef WINDOWS
 
 	#include <conio.h>
